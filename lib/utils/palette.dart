@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class Palette {
+  static Color textColorDark = const Color(0xFF1F2937);
+  static Color textColorLight = const Color(0xFF374151);
+  static Color textColorGrey = const Color.fromRGBO(255, 255, 255, .4);
+  static Color textColorGreyer = const Color.fromRGBO(255, 255, 255, .1);
+  static Color textColorRed = const Color(0xFFB91C1C);
+  static Color iconColorGrey = const Color(0xFF9CA3AF);
+  static Color iconBcgColorGrey = const Color(0xFFF3F4F6);
+  static Color lightBlue = const Color(0xFFBFDBFE);
+  static Color accentColorLighting = const Color.fromARGB(255, 81, 209, 255);
+  static Color accentColorLight = const Color.fromRGBO(118, 187, 249, 1);
+  static String accentColorLightHEX = '#76BBF9';
+  static Color accentColorLighter = const Color.fromRGBO(57, 161, 252, 1);
+  static String accentColorLighterHEX = '#39a1fc';
+  static Color accentColorMedium = const Color.fromRGBO(31, 148, 250, 1);
+  static String accentColorMediumHEX = '#1f94fa';
+  static Color accentColorDark = const Color.fromRGBO(0, 133, 249, 1);
+  static String accentColorDarkHEX = '#0085f9';
+  static Color accentColorMediumDark = const Color(0xFF061F84);
+  static Color accentColorVeryDark = const Color(0xFF040378);
+  static Color borderColor = Colors.grey.shade200;
+  static Color backgroundColor = const Color.fromRGBO(4, 5, 24, 1);
+  static Color backgroundDarkColor = Color.fromRGBO(5, 7, 32, 1);
+  static Color appBarColor = const Color(0xFF142D95);
+  static Color progressBarBgColor = const Color(0xFFDBEAFE);
+  static Color rangeHighlightColor = const Color(0xFFE8F2FF);
+  static Color timelineDividerColor = const Color(0xFFD1D5DB);
+  static Color expansionPanelListBorderColor = const Color(0xFFE5E7EB);
+  static Color tealCardColor = const Color(0xFFF0FDFA);
+  static Color redCardColor = const Color(0xFFFFE7E7);
+  static Color blueCardColor = const Color(0xFFDBEAFE);
+  static Color yellowCardColor = const Color(0xFFFFFBEB);
+  static Color tealCardBorderColor = const Color(0xFF0D9488);
+  static Color redCardBorderColor = const Color(0xFFF87171);
+  static Color yellowCardBorderColor = const Color(0xFFF59E0B);
+  static Color brightRedColor = const Color(0xFFFF0043);
+  static Color brightBlueColor = const Color(0xFF4338CA);
+  static Color purpleColor = const Color(0xFF6D28D9);
+  static Color orangeColor = const Color(0xFFF97316);
+  static Color coalBlackColor = const Color(0xFF242244);
+  static Color deepGreenColor = const Color(0xFF047857);
+  static Color lightPinkColor = const Color(0xFFFFAFC4);
+  static Color lightPurpleColor = const Color(0xFFBFBBED);
+  static Color orangeWordle = const Color(0xFFEA580C);
+}

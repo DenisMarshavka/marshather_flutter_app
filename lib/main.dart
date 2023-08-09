@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marshather_app/presentation/screens/screens.dart';
+import 'package:marshather_app/utils/utils.dart';
 
 void main() {
-  runApp(const MainApp());
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Palette.backgroundColor,
+  ));
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MaterialApp(theme: myTheme, home: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -9,12 +18,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello Marshather  App World!'),
-        ),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      builder: (context, _) => const HomeScreen(),
     );
   }
 }
