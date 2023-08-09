@@ -201,39 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 15.h,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Container(
-                          color: Palette.textColorGrey,
-                          height: .7.h,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            WeatherDetailsColWidget(
-                              svgAssetPath: 'assets/icons/wind.svg',
-                              value: '13 km/h',
-                              valueName: 'Wind',
-                            ),
-                            WeatherDetailsColWidget(
-                              svgAssetPath: 'assets/icons/wave.svg',
-                              value: '24%',
-                              valueName: 'Humidity',
-                            ),
-                            WeatherDetailsColWidget(
-                              svgAssetPath: 'assets/icons/droplets.svg',
-                              value: '87%',
-                              valueName: 'Chance of rain',
-                            ),
-                          ],
-                        ),
-                      )
+                      const WeatherDetailsInfoWidget(),
                     ],
                   ),
                 ),
