@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,7 +53,7 @@ class HoursWeatherItemWidget extends StatelessWidget {
                     0,
                   ),
                   blurRadius: 18.2.w,
-                  spreadRadius: !Platform.isAndroid ? -5.h : -10.h,
+                  spreadRadius: Constants.isIos ? -5.h : -10.h,
                 ), //BoxShadow
                 //BoxShadow
               ],

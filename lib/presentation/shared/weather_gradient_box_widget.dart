@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gradient_like_css/gradient_like_css.dart';
@@ -49,10 +48,10 @@ class WeatherGradientBoxWidget extends StatelessWidget {
             color: Palette.accentColorDark,
             offset: Offset(
               0,
-              !Platform.isAndroid ? 0 : -4.h,
+              Constants.isIos ? 0 : -4.h,
             ),
-            blurRadius: !Platform.isAndroid ? 35.w : 40.w,
-            spreadRadius: !Platform.isAndroid ? -10.h : -15.h,
+            blurRadius: Constants.isIos ? 35.w : 40.w,
+            spreadRadius: Constants.isIos ? -10.h : -15.h,
           ), //BoxShadow
           //BoxShadow
         ],
@@ -70,7 +69,7 @@ class WeatherGradientBoxWidget extends StatelessWidget {
           children: [
             offsetTopContent == true
                 ? SizedBox(
-                    height: 13.h,
+                    height: 15.h,
                   )
                 : Container(),
             child,

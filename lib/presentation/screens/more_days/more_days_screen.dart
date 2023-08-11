@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,19 +6,19 @@ import 'package:marshather_app/presentation/screens/more_days/more_days.dart';
 import 'package:marshather_app/presentation/shared/shared.dart';
 import 'package:marshather_app/utils/utils.dart';
 
-class SevenDaysScreen extends StatefulWidget {
-  const SevenDaysScreen({super.key});
+class MoreDaysScreen extends StatefulWidget {
+  const MoreDaysScreen({super.key});
 
   @override
-  State<SevenDaysScreen> createState() => _SevenDaysScreenState();
+  State<MoreDaysScreen> createState() => _MoreDaysScreenState();
 }
 
-class _SevenDaysScreenState extends State<SevenDaysScreen> {
+class _MoreDaysScreenState extends State<MoreDaysScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palette.backgroundColor,
-      appBar: !Platform.isAndroid ? null : sharedAppBar(context: context),
+      appBar: Constants.isIos ? null : sharedAppBar(context: context),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: 10.w,
@@ -48,7 +47,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
   Widget _renderInfoBox() => Stack(
         children: [
           Positioned(
-            top: Platform.isAndroid
+            top: !Constants.isIos
                 ? (MediaQuery.of(context).size.height / 100) * 6
                 : (MediaQuery.of(context).size.height / 100) * 7.5,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
@@ -73,7 +72,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
           WeatherGradientBoxWidget(
             offsetTopContent: false,
             paddingBottom: 35.h,
-            paddingTop: Platform.isAndroid ? 15.h : 0,
+            paddingTop: !Constants.isIos ? 15.h : 0,
             child: Padding(
               padding: EdgeInsets.only(
                 bottom: 15.h,
@@ -110,7 +109,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
                       children: [
                         SvgPicture.asset(
                           'assets/icons/thunderstorm.svg',
-                          width: !Platform.isAndroid ? 95.sp : 130.sp,
+                          width: Constants.isIos ? 95.sp : 130.sp,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +125,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
                                   ),
                             ),
                             SizedBox(
-                              width: !Platform.isAndroid ? 170.sp : 215.sp,
+                              width: Constants.isIos ? 170.sp : 215.sp,
                               child: Stack(
                                 //crossAxisAlignment: CrossAxisAlignment.baseline,
                                 //textBaseline: TextBaseline.alphabetic,
@@ -137,12 +136,11 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
                                         .textTheme
                                         .titleLarge!
                                         .copyWith(
-                                      fontSize:
-                                          !Platform.isAndroid ? 70.sp : 90.sp,
+                                      fontSize: Constants.isIos ? 70.sp : 90.sp,
                                       shadows: [
                                         Shadow(
                                           blurRadius:
-                                              !Platform.isAndroid ? 12.0 : 7.0,
+                                              Constants.isIos ? 12.0 : 7.0,
                                           color: Colors.white24,
                                           offset: const Offset(
                                             0.0,
@@ -154,7 +152,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
                                     withCelsius: false,
                                   ),
                                   Positioned(
-                                    bottom: !Platform.isAndroid ? 10.sp : 15.sp,
+                                    bottom: Constants.isIos ? 10.sp : 15.sp,
                                     right: 0,
                                     child: Opacity(
                                       opacity: .35,
@@ -164,7 +162,7 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
                                             .textTheme
                                             .titleLarge!
                                             .copyWith(
-                                              fontSize: !Platform.isAndroid
+                                              fontSize: Constants.isIos
                                                   ? 40.sp
                                                   : 50.sp,
                                               color: Colors.white,
@@ -194,6 +192,37 @@ class _SevenDaysScreenState extends State<SevenDaysScreen> {
               ),
             ),
           ),
+          Positioned(
+            top: !Constants.isIos
+                ? MediaQuery.of(context).size.height / 28
+                : MediaQuery.of(context).size.height / 14,
+            left: 20.w,
+            child: TouchableButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    50.w,
+                  ),
+                  border: Border.all(
+                    width: 1.h,
+                    color: Colors.white38,
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 2.w,
+                  vertical: 2.w,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.chevron_left_rounded,
+                    color: Colors.white,
+                    size: 30.w,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       );
 }

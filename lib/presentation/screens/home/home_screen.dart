@@ -1,12 +1,11 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:marshather_app/presentation/screens/home/widgets/widgets.dart';
 import 'package:marshather_app/presentation/shared/shared.dart';
+import 'package:marshather_app/utils/router.dart';
 import 'package:marshather_app/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palette.backgroundColor,
-      appBar: !Platform.isAndroid ? null : sharedAppBar(context: context),
+      appBar: Constants.isIos ? null : sharedAppBar(context: context),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: 10.w,
@@ -51,8 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 23.sp,
                                 ),
                       ),
-                      GestureDetector(
-                        onTap: () => null,
+                      TouchableButton(
+                        onPressed: () =>
+                            AppRoute.router.goNamed(Routes.moreDaysPage.name),
                         child: Row(
                           children: [
                             Text(
@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _renderInfoBox() => Stack(
         children: [
           Positioned(
-            top: Platform.isAndroid
+            top: !Constants.isIos
                 ? (MediaQuery.of(context).size.height / 100) * 11.8
                 : (MediaQuery.of(context).size.height / 100) * 10.8,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
@@ -152,6 +152,37 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          Positioned(
+            top: !Constants.isIos
+                ? MediaQuery.of(context).size.height / 28
+                : MediaQuery.of(context).size.height / 14,
+            left: 20.w,
+            child: TouchableButton(
+              onPressed: () => context,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    50.w,
+                  ),
+                  border: Border.all(
+                    width: 1.h,
+                    color: Colors.white38,
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 7.w,
+                  vertical: 7.w,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.location_on_outlined,
+                    color: Colors.white,
+                    size: 20.w,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       );
 }
