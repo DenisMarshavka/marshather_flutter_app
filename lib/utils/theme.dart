@@ -9,9 +9,9 @@ final TextTheme myTextTheme = TextTheme(
     color: Colors.white,
     shadows: const [
       Shadow(
-        blurRadius: 4.0, // shadow blur
-        color: Colors.black45, // shadow color
-        offset: Offset(0.0, 0.0), // how much shadow will be shown
+        blurRadius: 4.0,
+        color: Colors.black45,
+        offset: Offset(0.0, 0.0),
       ),
     ],
   ),
@@ -41,7 +41,23 @@ final TextTheme myTextTheme = TextTheme(
   ),
 );
 
+MaterialColor myBlackMaterialSwatch = const MaterialColor(
+  0xFF000000, // The primary color value (black in this case)
+  <int, Color>{
+    50: Color(0xFFE0E0E0), // Shades/tints can be defined here
+    100: Color(0xFFB0B0B0),
+    200: Color(0xFF808080),
+    300: Color(0xFF505050),
+    400: Color(0xFF303030),
+    500: Color(0xFF000000), // This is the primary color
+    600: Color(0xFF000000),
+    700: Color(0xFF000000),
+    800: Color(0xFF000000),
+    900: Color(0xFF000000),
+  },
+);
+
 final ThemeData myTheme = ThemeData(
-  primarySwatch: Colors.blue,
+  primarySwatch: myBlackMaterialSwatch,
   textTheme: myTextTheme,
 );

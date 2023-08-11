@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      builder: (context, _) => const HomeScreen(),
+      builder: (context, _) => const SevenDaysScreen(),
     );
   }
 }

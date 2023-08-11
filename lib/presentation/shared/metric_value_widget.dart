@@ -7,13 +7,17 @@ class MetricValueWidget extends StatelessWidget {
     super.key,
     required this.value,
     this.fontSize,
+    this.style,
     this.fontSizeCelsius,
     this.isCelsiusWhiteColor = false,
+    this.withCelsius = true,
   });
   final String value;
+  final TextStyle? style;
   final num? fontSize;
   final num? fontSizeCelsius;
   final bool? isCelsiusWhiteColor;
+  final bool? withCelsius;
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +28,26 @@ class MetricValueWidget extends StatelessWidget {
       children: [
         Text(
           '$value ',
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontSize: valueFontSize,
-              ),
+          style: style ??
+              Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontSize: valueFontSize,
+                  ),
         ),
-        Positioned(
-          top: valueFontSize / 6.h,
-          right: 0,
-          child: Text(
-            '°',
-            style: TextStyle(
-              fontSize: celsiusFontSize,
-              color: isCelsiusWhiteColor == false
-                  ? Palette.textColorGrey
-                  : Colors.white,
-            ),
-          ),
-        ),
+        withCelsius == true
+            ? Positioned(
+                top: valueFontSize / 6.h,
+                right: 0,
+                child: Text(
+                  '°',
+                  style: TextStyle(
+                    fontSize: celsiusFontSize,
+                    color: isCelsiusWhiteColor == false
+                        ? Palette.textColorGrey
+                        : Colors.white,
+                  ),
+                ),
+              )
+            : Container(),
       ],
     );
   }

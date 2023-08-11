@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_like_css/gradient_like_css.dart';
 
 import 'package:marshather_app/presentation/screens/home/widgets/widgets.dart';
 import 'package:marshather_app/presentation/shared/shared.dart';
@@ -112,98 +112,42 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(
-              bottom: 20.h,
-            ),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              gradient: linearGradient(
-                null,
-                [
-                  '${Palette.accentColorLightHEX} 30%',
-                  Palette.accentColorLighterHEX,
-                  Palette.accentColorMediumHEX,
-                  Palette.accentColorDarkHEX
-                ],
-              ),
-              color: Palette.accentColorDark,
-              borderRadius: BorderRadius.circular(
-                50.w,
-              ),
-              border: Border.all(
-                width: 2.h,
-                color: Palette.accentColorLight,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Palette.accentColorDark,
-                  offset: Offset(
-                    0,
-                    !Platform.isAndroid ? 0 : -4.h,
-                  ),
-                  blurRadius: !Platform.isAndroid ? 35.w : 40.w,
-                  spreadRadius: !Platform.isAndroid ? -10.h : -15.h,
-                ), //BoxShadow
-                //BoxShadow
-              ],
-            ),
-            child: Stack(
+          WeatherGradientBoxWidget(
+            child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 40.h,
-                    left: 30.w,
-                    right: 30.w,
-                    bottom: 30.h,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 15.h,
+                SvgPicture.asset(
+                  'assets/icons/cloudy.svg',
+                  height: 150.h,
+                  width: 160.w,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                const MetricValueWidget(
+                  value: '21',
+                ),
+                Text(
+                  'Thunderstorm',
+                  style: GoogleFonts.rubik(
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                    shadows: const [
+                      Shadow(
+                        blurRadius: 4.0, // shadow blur
+                        color: Colors.black45, // shadow color
+                        offset:
+                            Offset(0.0, 0.0), // how much shadow will be shown
                       ),
-                      SvgPicture.asset(
-                        'assets/icons/cloudy.svg',
-                        height: 150.h,
-                        width: 160.w,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      const MetricValueWidget(
-                        value: '21',
-                      ),
-                      Text(
-                        'Thunderstorm',
-                        style: GoogleFonts.rubik(
-                          fontSize: 26.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                          shadows: const [
-                            Shadow(
-                              blurRadius: 4.0, // shadow blur
-                              color: Colors.black45, // shadow color
-                              offset: Offset(
-                                  0.0, 0.0), // how much shadow will be shown
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        'Monday, 17 May',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const WeatherDetailsInfoWidget(),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  'Monday, 17 May',
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
             ),
