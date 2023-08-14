@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherDetailsInfoItemWidget extends StatelessWidget {
   const WeatherDetailsInfoItemWidget({
@@ -17,10 +17,10 @@ class WeatherDetailsInfoItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(
+        Img(
           svgAssetPath,
-          height: 17.h,
-          width: 20.w,
+          height: 25.h,
+          width: 35.w,
         ),
         SizedBox(
           height: 10.h,

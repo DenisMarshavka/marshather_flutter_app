@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:marshather_app/presentation/screens/home/widgets/widgets.dart';
@@ -91,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Positioned(
             top: !Constants.isIos
-                ? (MediaQuery.of(context).size.height / 100) * 11.8
-                : (MediaQuery.of(context).size.height / 100) * 10.8,
+                ? (MediaQuery.of(context).size.height / 100) * 23.8
+                : (MediaQuery.of(context).size.height / 100) * 22.8,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(
               opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).
@@ -115,10 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
           WeatherGradientBoxWidget(
             child: Column(
               children: [
-                SvgPicture.asset(
+                Img(
                   'assets/icons/cloudy.svg',
-                  height: 150.h,
-                  width: 160.w,
+                  height: 240.h,
                 ),
                 SizedBox(
                   height: 20.h,

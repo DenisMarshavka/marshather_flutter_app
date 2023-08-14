@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherDetailsColWidget extends StatelessWidget {
   const WeatherDetailsColWidget({
@@ -17,7 +17,7 @@ class WeatherDetailsColWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(
+        Img(
           svgAssetPath,
           height: 17.h,
           width: 20.w,

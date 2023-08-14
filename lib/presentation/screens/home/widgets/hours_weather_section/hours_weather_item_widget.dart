@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradient_like_css/gradient_like_css.dart';
 import 'package:marshather_app/utils/utils.dart';
 
@@ -70,7 +70,7 @@ class HoursWeatherItemWidget extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          SvgPicture.asset(
+          Img(
             weatherSvgAssetsPath,
             height: 40.h,
             width: 45.w,

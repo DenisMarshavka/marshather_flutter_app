@@ -22,7 +22,7 @@ class Palette {
   static Color accentColorVeryDark = const Color(0xFF040378);
   static Color borderColor = Colors.grey.shade200;
   static Color backgroundColor = const Color.fromRGBO(4, 5, 24, 1);
-  static Color backgroundDarkColor = Color.fromRGBO(5, 7, 32, 1);
+  static Color backgroundDarkColor = const Color.fromRGBO(5, 7, 32, 1);
   static Color appBarColor = const Color(0xFF142D95);
   static Color progressBarBgColor = const Color(0xFFDBEAFE);
   static Color rangeHighlightColor = const Color(0xFFE8F2FF);

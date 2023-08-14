@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherDaysItemWidget extends StatelessWidget {
   WeatherDaysItemWidget({
@@ -27,11 +27,14 @@ class WeatherDaysItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            day,
-            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                  fontSize: 17.sp,
-                ),
+          SizedBox(
+            width: 40.sp,
+            child: Text(
+              day,
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    fontSize: 17.sp,
+                  ),
+            ),
           ),
           SizedBox(
             width: 115.sp,
@@ -39,9 +42,10 @@ class WeatherDaysItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SvgPicture.asset(
+                Img(
                   wetherImageSrc,
-                  height: 25.sp,
+                  width: 25.w,
+                  height: 25.w,
                 ),
                 SizedBox(
                   width: 10.w,

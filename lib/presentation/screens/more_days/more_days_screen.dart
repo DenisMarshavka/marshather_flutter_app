@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marshather_app/presentation/screens/more_days/more_days.dart';
 
 import 'package:marshather_app/presentation/shared/shared.dart';
@@ -47,9 +47,9 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
   Widget _renderInfoBox() => Stack(
         children: [
           Positioned(
-            top: !Constants.isIos
-                ? (MediaQuery.of(context).size.height / 100) * 6
-                : (MediaQuery.of(context).size.height / 100) * 7.5,
+            top: Constants.isIos
+                ? (MediaQuery.of(context).size.height / 100) * 8.8
+                : (MediaQuery.of(context).size.height / 100) * 4.5,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(
               opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).
@@ -72,7 +72,7 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
           WeatherGradientBoxWidget(
             offsetTopContent: false,
             paddingBottom: 35.h,
-            paddingTop: !Constants.isIos ? 15.h : 0,
+            paddingTop: !Constants.isIos ? 27.h : 0,
             child: Padding(
               padding: EdgeInsets.only(
                 bottom: 15.h,
@@ -107,9 +107,13 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SvgPicture.asset(
+                        Img(
                           'assets/icons/thunderstorm.svg',
-                          width: Constants.isIos ? 95.sp : 130.sp,
+                          width: 95.sp,
+                          height: 95.sp,
+                        ),
+                        SizedBox(
+                          width: 15.w,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +129,7 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                                   ),
                             ),
                             SizedBox(
-                              width: Constants.isIos ? 170.sp : 215.sp,
+                              width: Constants.isIos ? 170.sp : 180.sp,
                               child: Stack(
                                 //crossAxisAlignment: CrossAxisAlignment.baseline,
                                 //textBaseline: TextBaseline.alphabetic,
@@ -136,7 +140,7 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                                         .textTheme
                                         .titleLarge!
                                         .copyWith(
-                                      fontSize: Constants.isIos ? 70.sp : 90.sp,
+                                      fontSize: Constants.isIos ? 70.sp : 64.sp,
                                       shadows: [
                                         Shadow(
                                           blurRadius:
@@ -152,8 +156,8 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                                     withCelsius: false,
                                   ),
                                   Positioned(
-                                    bottom: Constants.isIos ? 10.sp : 15.sp,
-                                    right: 0,
+                                    bottom: Constants.isIos ? 10.sp : 8.sp,
+                                    right: Constants.isIos ? 5.sp : 35.sp,
                                     child: Opacity(
                                       opacity: .35,
                                       child: Text(
@@ -164,7 +168,7 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                                             .copyWith(
                                               fontSize: Constants.isIos
                                                   ? 40.sp
-                                                  : 50.sp,
+                                                  : 34.sp,
                                               color: Colors.white,
                                               shadows: null,
                                             ),
