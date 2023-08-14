@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_img/flutter_img.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +17,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (Constants.isIos) {
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          statusBarBrightness:
+              Brightness.dark, //or set color with: Color(0xFF0000FF)
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Positioned(
             top: !Constants.isIos
-                ? (MediaQuery.of(context).size.height / 100) * 16
+                ? (MediaQuery.of(context).size.height / 100) * 15
                 : (MediaQuery.of(context).size.height / 100) * 15.5,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(

@@ -13,8 +13,10 @@ PreferredSizeWidget sharedAppBar({
     PreferredSize(
       preferredSize: const Size.fromHeight(0),
       child: AppBar(
+        foregroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Palette.backgroundDarkColor,
+          systemNavigationBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.dark,
         ),
