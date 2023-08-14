@@ -91,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Positioned(
             top: !Constants.isIos
-                ? (MediaQuery.of(context).size.height / 100) * 23.8
-                : (MediaQuery.of(context).size.height / 100) * 22.8,
+                ? (MediaQuery.of(context).size.height / 100) * 16
+                : (MediaQuery.of(context).size.height / 100) * 15.5,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(
               opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Img(
                   'assets/icons/cloudy.svg',
-                  height: 240.h,
+                  height: 180.h,
                 ),
                 SizedBox(
                   height: 20.h,
