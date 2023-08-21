@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TouchableButton extends StatefulWidget {
-  const TouchableButton({
+class TouchableButtonWidget extends StatefulWidget {
+  const TouchableButtonWidget({
     super.key,
     required this.onPressed,
     required this.child,
@@ -10,10 +10,10 @@ class TouchableButton extends StatefulWidget {
   final Widget child;
 
   @override
-  _TouchableButtonState createState() => _TouchableButtonState();
+  _TouchableButtonWidgetState createState() => _TouchableButtonWidgetState();
 }
 
-class _TouchableButtonState extends State<TouchableButton> {
+class _TouchableButtonWidgetState extends State<TouchableButtonWidget> {
   bool _isPressed = false;
 
   void _handlePress() {

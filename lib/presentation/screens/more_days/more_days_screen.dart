@@ -49,7 +49,7 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
           Positioned(
             top: Constants.isIos
                 ? (MediaQuery.of(context).size.height / 100) * 8.8
-                : (MediaQuery.of(context).size.height / 100) * 4.5,
+                : (MediaQuery.of(context).size.height / 100) * 4.3,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(
               opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).
@@ -201,32 +201,13 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                 ? MediaQuery.of(context).size.height / 28
                 : MediaQuery.of(context).size.height / 14,
             left: 20.w,
-            child: TouchableButton(
+            child: TouchableCircularIconButtonWidget(
               onPressed: () => Navigator.of(context).pop(),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    50.w,
-                  ),
-                  border: Border.all(
-                    width: 1.h,
-                    color: Colors.white38,
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 2.w,
-                  vertical: 2.w,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.chevron_left_rounded,
-                    color: Colors.white,
-                    size: 30.w,
-                  ),
-                ),
-              ),
+              icon: Icons.chevron_left_rounded,
+              iconSize: 30.w,
+              paddingAll: 2.w,
             ),
-          )
+          ),
         ],
       );
 }

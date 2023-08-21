@@ -8,7 +8,8 @@ import 'package:marshather_app/utils/services/services.dart';
 enum Routes {
   rootAuth('/'),
   homePage('/home_page'),
-  moreDaysPage('more_days');
+  moreDaysPage('more_days_page'),
+  searchPage('search_page');
 
   const Routes(this.path);
   final String path;
@@ -64,6 +65,15 @@ class AppRoute {
             pageBuilder: (context, state) => createCustomTransitionPage(
               key: state.pageKey,
               child: const MoreDaysScreen(),
+              transitionsBuilder: iosLikeTransitionBuilder(),
+            ),
+          ),
+          GoRoute(
+            path: Routes.searchPage.path,
+            name: Routes.searchPage.name,
+            pageBuilder: (context, state) => createCustomTransitionPage(
+              key: state.pageKey,
+              child: const SearchScreen(),
               transitionsBuilder: iosLikeTransitionBuilder(),
             ),
           ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_img/flutter_img.dart';
@@ -65,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 23.sp,
                                 ),
                       ),
-                      TouchableButton(
+                      TouchableButtonWidget(
                         onPressed: () =>
                             AppRoute.router.goNamed(Routes.moreDaysPage.name),
                         child: Row(
@@ -166,35 +168,26 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          //The Geolocation button
           Positioned(
             top: !Constants.isIos
                 ? MediaQuery.of(context).size.height / 28
                 : MediaQuery.of(context).size.height / 14,
             left: 20.w,
-            child: TouchableButton(
-              onPressed: () => context,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    50.w,
-                  ),
-                  border: Border.all(
-                    width: 1.h,
-                    color: Colors.white38,
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 7.w,
-                  vertical: 7.w,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.white,
-                    size: 20.w,
-                  ),
-                ),
-              ),
+            child: TouchableCircularIconButtonWidget(
+              icon: Icons.location_on_outlined,
+              onPressed: () => log('Geolocation pressed!'),
+            ),
+          ),
+          //The Search button
+          Positioned(
+            top: !Constants.isIos
+                ? MediaQuery.of(context).size.height / 28
+                : MediaQuery.of(context).size.height / 14,
+            right: 20.w,
+            child: TouchableCircularIconButtonWidget(
+              icon: Icons.search_outlined,
+              onPressed: () => AppRoute.router.goNamed(Routes.searchPage.name),
             ),
           )
         ],
