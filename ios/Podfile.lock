@@ -23,7 +23,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_statusbarcolor_ns (from `.symlinks/plugins/flutter_statusbarcolor_ns/ios`)
   - gradient_like_css (from `.symlinks/plugins/gradient_like_css/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
 
@@ -41,7 +41,7 @@ EXTERNAL SOURCES:
   gradient_like_css:
     :path: ".symlinks/plugins/gradient_like_css/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   vibration:
