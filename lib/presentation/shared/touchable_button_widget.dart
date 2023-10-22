@@ -21,7 +21,15 @@ class _TouchableButtonWidgetState extends State<TouchableButtonWidget> {
       _isPressed = !_isPressed;
     });
 
-    widget.onPressed();
+    Future.delayed(const Duration(milliseconds: 300), () {
+      widget.onPressed();
+
+      if (mounted) {
+        setState(() {
+          _isPressed = false;
+        });
+      }
+    });
   }
 
   @override
@@ -30,11 +38,6 @@ class _TouchableButtonWidgetState extends State<TouchableButtonWidget> {
       onTapDown: (_) {
         setState(() {
           _isPressed = true;
-        });
-      },
-      onTapUp: (_) {
-        setState(() {
-          _isPressed = false;
         });
       },
       onTapCancel: () {
