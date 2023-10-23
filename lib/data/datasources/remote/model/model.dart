@@ -1,2 +1,2 @@
-export './google/google.dart';
+export 'geocoding/geocoding.dart';
 export './weather/weather.dart';

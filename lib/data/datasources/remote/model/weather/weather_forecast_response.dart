@@ -7,11 +7,11 @@ class WeatherForecastResponse {
   int? cnt;
   List<WeatherList>? list;
   WeatherForecastResponse({
-    city,
-    cod,
-    message,
-    cnt,
-    list,
+    this.city,
+    this.cod,
+    this.message,
+    this.cnt,
+    this.list,
   });
 
   WeatherForecastResponse.fromJson(Map<String, dynamic> json) {
@@ -51,12 +51,12 @@ class City {
   int? timezone;
 
   City({
-    id,
-    name,
-    coord,
-    country,
-    population,
-    timezone,
+    this.id,
+    this.name,
+    this.coord,
+    this.country,
+    this.population,
+    this.timezone,
   });
 
   City.fromJson(Map<String, dynamic> json) {
@@ -86,7 +86,10 @@ class Coord {
   int? lon;
   int? lat;
 
-  Coord({lon, lat});
+  Coord({
+    this.lon,
+    this.lat,
+  });
 
   Coord.fromJson(Map<String, dynamic> json) {
     lon = json['lon'];
@@ -118,20 +121,20 @@ class WeatherList {
   double? rain;
 
   WeatherList({
-    dt,
-    sunrise,
-    sunset,
-    temp,
-    feelsLike,
-    pressure,
-    humidity,
-    weather,
-    speed,
-    deg,
-    gust,
-    clouds,
-    pop,
-    rain,
+    this.dt,
+    this.sunrise,
+    this.sunset,
+    this.temp,
+    this.feelsLike,
+    this.pressure,
+    this.humidity,
+    this.weather,
+    this.speed,
+    this.deg,
+    this.gust,
+    this.clouds,
+    this.pop,
+    this.rain,
   });
 
   WeatherList.fromJson(Map<String, dynamic> json) {
@@ -192,7 +195,14 @@ class Temp {
   double? eve;
   double? morn;
 
-  Temp({day, min, max, night, eve, morn});
+  Temp({
+    this.day,
+    this.min,
+    this.max,
+    this.night,
+    this.eve,
+    this.morn,
+  });
 
   Temp.fromJson(Map<String, dynamic> json) {
     day = json['day'].toDouble();
@@ -221,7 +231,12 @@ class FeelsLike {
   double? eve;
   double? morn;
 
-  FeelsLike({day, night, eve, morn});
+  FeelsLike({
+    this.day,
+    this.night,
+    this.eve,
+    this.morn,
+  });
 
   FeelsLike.fromJson(Map<String, dynamic> json) {
     day = json['day'].toDouble();

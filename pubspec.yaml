@@ -21,6 +21,7 @@ dependencies:
   go_router: ^10.0.0
   google_fonts: ^4.0.4
   gradient_like_css: ^1.0.1
+  json_annotation: ^4.8.1
   logger: ^2.0.2+1
   shared_preferences: ^2.2.2
   vibration: ^1.8.1
@@ -30,6 +31,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.6
 
 flutter:
   uses-material-design: true
