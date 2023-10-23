@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:marshather_app/di/di.dart';
 import 'package:marshather_app/utils/router.dart';
 import 'package:marshather_app/utils/utils.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await serviceLocator();
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Palette.backgroundColor,
   ));
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(MaterialApp(theme: myTheme, home: const MainApp()));
 }
 
