@@ -91,13 +91,11 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
                         ),
                         Text(
                           ' 7 days',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge!
-                              .copyWith(
-                                fontSize: 29.sp,
-                                color: Colors.white,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    fontSize: 29.sp,
+                                    color: Colors.white,
+                                  ),
                         ),
                       ],
                     ),

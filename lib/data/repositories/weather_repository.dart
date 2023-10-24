@@ -10,20 +10,25 @@ class WeatherRepositoryImpl extends WeatherRepository {
   final WeatherRemoteDatasource weatherRemoteDatasource;
 
   @override
-  Future<Either<Failure, WeatherForecastResponse>> getForecastDailyWithCity(
+  Future<Either<Failure, WeatherForecastDaysHourlyResponse>>
+      getForecastDaysHourly(
     WeatherForecastParams params,
   ) async {
     try {
       final response =
-          await weatherRemoteDatasource.getForecastDailyWithCity(params);
+          await weatherRemoteDatasource.getForecastDaysHourly(params);
 
       return Right(
-        WeatherForecastResponse(
-          city: response.city,
-          cod: response.cod,
-          message: response.message,
-          cnt: response.cnt,
-          list: response.list,
+        WeatherForecastDaysHourlyResponse(
+          latitude: response.latitude,
+          longitude: response.longitude,
+          generationtimeMs: response.generationtimeMs,
+          utcOffsetSeconds: response.utcOffsetSeconds,
+          timezone: response.timezone,
+          timezoneAbbreviation: response.timezoneAbbreviation,
+          elevation: response.elevation,
+          hourlyUnits: response.hourlyUnits,
+          hourly: response.hourly,
         ),
       );
     } on ServerException catch (e) {

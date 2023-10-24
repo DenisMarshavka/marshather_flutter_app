@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:marshather_app/di/di.dart';
+import 'package:marshather_app/presentation/screens/screens.dart';
 import 'package:marshather_app/utils/router.dart';
 import 'package:marshather_app/utils/utils.dart';
 
@@ -29,20 +31,27 @@ class MainApp extends StatelessWidget {
       builder: (context, _) {
         AppRoute.setStream(context);
 
-        return MaterialApp.router(
-          title: Constants.appName,
-          theme: myTheme,
-          /*localizationsDelegates: const [
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => sl<HomeDayHoursCubit>(),
+            ),
+          ],
+          child: MaterialApp.router(
+            title: Constants.appName,
+            theme: myTheme,
+            /*localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,*/
-          routerDelegate: AppRoute.router.routerDelegate,
-          routeInformationParser: AppRoute.router.routeInformationParser,
-          routeInformationProvider: AppRoute.router.routeInformationProvider,
-          builder: (context, child) {
-            return child!;
-          },
+            routerDelegate: AppRoute.router.routerDelegate,
+            routeInformationParser: AppRoute.router.routeInformationParser,
+            routeInformationProvider: AppRoute.router.routeInformationProvider,
+            builder: (context, child) {
+              return child!;
+            },
+          ),
         );
       },
     );

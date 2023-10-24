@@ -4,3 +4,4 @@ export './weather_details_info/weather_details_info.dart';
 export './weather_gradient_box_widget.dart';
 export './touchable_button_widget.dart';
 export './touchable_circular_icon_button_widget.dart';
+export './skeleton_loading_widget.dart';

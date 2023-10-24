@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:marshather_app/data/data.dart';
 import 'package:marshather_app/domain/domain.dart';
 
+import '../presentation/screens/home/home.dart';
+
 GetIt sl = GetIt.instance;
 
 Future<void> serviceLocator({bool isUnitTest = false}) async {
@@ -21,13 +23,17 @@ Future<void> serviceLocator({bool isUnitTest = false}) async {
     await SharedPreferences.getInstance().then(initPrefManager);
 
     sl.registerSingleton<DioClient>(DioClient(isUnitTest: true));
+
     dataSources();
     repositories();
     //services();
     useCase();
     cubit();
   } else {
-    sl.registerSingleton<DioClient>(DioClient());
+    sl
+      ..registerSingleton<DioClient>(DioClient())
+      ..registerSingleton<NoTokenDioClient>(NoTokenDioClient());
+
     //..registerSingleton<NotificationsService>(NotificationsService())
     dataSources();
     repositories();
@@ -76,19 +82,13 @@ void useCase() {
 }
 
 void cubit() {
-  /*sl
+  sl
     /*..registerLazySingleton(
       UserSettingsCubit.new,
     )*/
     ..registerLazySingleton(
-      () => TwoFactorAuthCubit(
-        postSetTwoFactorAuth: sl(),
-        postTwoFactorAuthConfirmCode: sl(),
-        postTwoFactorAuthVerifyPhoneConfirm: sl(),
-        postTwoFactorAuthVerifyPhoneSend: sl(),
-        userSettingsCubit: sl(),
-        loginBloc: sl(),
-        postLogin: sl(),
+      () => HomeDayHoursCubit(
+        getWeatherDayHourly: sl(),
       ),
-    );*/
+    );
 }

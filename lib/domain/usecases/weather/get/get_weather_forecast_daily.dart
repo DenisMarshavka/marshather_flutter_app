@@ -4,24 +4,27 @@ import 'package:marshather_app/data/data.dart';
 import 'package:marshather_app/domain/domain.dart';
 
 class GetWeatherForecastDaily
-    extends UseCase<WeatherForecastResponse, WeatherForecastParams> {
+    extends UseCase<WeatherForecastDaysHourlyResponse, WeatherForecastParams> {
   GetWeatherForecastDaily(this._repo);
 
   final WeatherRepository _repo;
 
   @override
-  Future<Either<Failure, WeatherForecastResponse>> call(
+  Future<Either<Failure, WeatherForecastDaysHourlyResponse>> call(
           WeatherForecastParams params) =>
-      _repo.getForecastDailyWithCity(params);
+      _repo.getForecastDaysHourly(params);
 }
 
 class WeatherForecastParams {
   WeatherForecastParams({
-    this.cityName = '',
+    required this.latitude,
+    required this.longitude,
   });
-  final String cityName;
+  final double latitude;
+  final double longitude;
 
   Map<String, dynamic> toJson() => {
-        'cityName': cityName,
+        'latitude': latitude,
+        'longitude': longitude,
       };
 }

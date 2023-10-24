@@ -3,16 +3,18 @@ import 'package:json_annotation/json_annotation.dart';
 part 'geocoding_search_location_response.g.dart';
 
 @JsonSerializable()
-class GeocodingSearchLocationResonse {
+class GeocodingSearchLocationListResponse {
   List<GeocodingSearchLocationListItemResponse>? results;
   double? generationtimeMs;
 
-  GeocodingSearchLocationResonse({this.results, this.generationtimeMs});
+  GeocodingSearchLocationListResponse({this.results, this.generationtimeMs});
 
-  GeocodingSearchLocationResonse.fromJson(Map<String, dynamic> json) =>
-      _$GeocodingSearchLocationResonseFromJson(json);
+  factory GeocodingSearchLocationListResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$GeocodingSearchLocationListResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GeocodingSearchLocationResonseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$GeocodingSearchLocationListResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -22,7 +24,7 @@ class GeocodingSearchLocationListItemResponse {
   // @JsonKey(name: 'lat') // If the name option is 'lat' in the API data
   double? latitude;
   double? longitude;
-  int? elevation;
+  double? elevation;
   String? featureCode;
   String? countryCode;
   int? admin1Id;
@@ -52,7 +54,8 @@ class GeocodingSearchLocationListItemResponse {
     this.admin2,
   });
 
-  GeocodingSearchLocationListItemResponse.fromJson(Map<String, dynamic> json) =>
+  factory GeocodingSearchLocationListItemResponse.fromJson(
+          Map<String, dynamic> json) =>
       _$GeocodingSearchLocationListItemResponseFromJson(json);
 
   Map<String, dynamic> toJson() =>

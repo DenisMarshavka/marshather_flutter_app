@@ -7,6 +7,7 @@ environment:
   sdk: '>=2.19.6 <3.0.0'
 
 dependencies:
+  auto_size_text: ^3.0.0
   dartz: ^0.10.1
   dio: ^5.3.3
   equatable: ^2.0.5
@@ -21,9 +22,11 @@ dependencies:
   go_router: ^10.0.0
   google_fonts: ^4.0.4
   gradient_like_css: ^1.0.1
+  intl: ^0.18.1
   json_annotation: ^4.8.1
   logger: ^2.0.2+1
   shared_preferences: ^2.2.2
+  skeleton_loader: ^2.0.0+4
   vibration: ^1.8.1
   
 
@@ -36,7 +39,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
+  #generate: true
 
   assets:
     - assets/

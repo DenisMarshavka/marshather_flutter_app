@@ -1,20 +1,15 @@
 import 'package:marshather_app/domain/usecases/usecases.dart';
-import 'package:marshather_app/utils/utils.dart';
 
 class ListApi {
   ListApi._();
 
   // For example
-  static const String weatherForecast = '/data/2.5/forecast';
+  static const String weatherForecast = '/v1/forecast';
   static const String geocodingVersionApi = '/v1';
 
   // With query params
-  static String weatherForecastDaily(WeatherForecastParams params) {
-    return '/$weatherForecast/daily?q=${params.cityName}&appid=${Constants.appId}';
-  }
-
   static String weatherForecastHourly(WeatherForecastParams params) {
-    return '/$weatherForecast/hourly?q=${params.cityName}&appid=${Constants.appId}';
+    return '$weatherForecast?latitude=${params.latitude}&longitude=${params.longitude}&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,weathercode,precipitation_probability&past_days=0';
   }
 
   static String geocodingGetLocationByCityName(WeatherForecastParams params) {
