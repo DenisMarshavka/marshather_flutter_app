@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable_panel/flutter_slidable_panel.dart';
@@ -10,15 +11,15 @@ class LocationsListItemWidget extends StatefulWidget {
     required this.itemIndex,
     required this.onDeletePressed,
     required this.name,
-    required this.time,
+    required this.address,
     required this.temp,
     this.isCurrentLocation = false,
   });
   final String itemIndex;
   final VoidCallback onDeletePressed;
   final String name;
-  final String time;
-  final String temp;
+  final String address;
+  final num temp;
   final bool? isCurrentLocation;
 
   @override
@@ -116,18 +117,6 @@ class _LocationsListItemWidgetState extends State<LocationsListItemWidget> {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                widget.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      fontSize: 25.sp,
-                                    ),
-                              ),
-                              SizedBox(
-                                width: 12.w,
-                              ),
                               widget.isCurrentLocation == true
                                   ? Icon(
                                       Icons.near_me_rounded,
@@ -135,26 +124,48 @@ class _LocationsListItemWidgetState extends State<LocationsListItemWidget> {
                                       size: 20.sp,
                                     )
                                   : Container(),
+                              widget.isCurrentLocation == true
+                                  ? SizedBox(
+                                      width: 12.w,
+                                    )
+                                  : Container(),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 2.4,
+                                child: AutoSizeText(
+                                  widget.name,
+                                  maxLines: 1,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                        fontSize: 25.sp,
+                                      ),
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(
                             height: 15.h,
                           ),
-                          Text(
-                            widget.time,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge!
-                                .copyWith(
-                                  fontSize: 17.sp,
-                                ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.9,
+                            child: AutoSizeText(
+                              widget.address,
+                              maxLines: 3,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge!
+                                  .copyWith(
+                                    fontSize: 16.sp,
+                                  ),
+                            ),
                           ),
                         ],
                       ),
                       Opacity(
                         opacity: .9,
                         child: Text(
-                          '${widget.temp}°',
+                          '${widget.temp.ceil()}°',
                           style:
                               Theme.of(context).textTheme.titleLarge!.copyWith(
                                     fontSize: 55.sp,

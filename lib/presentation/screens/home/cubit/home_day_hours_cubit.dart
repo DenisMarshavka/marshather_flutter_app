@@ -23,7 +23,12 @@ class HomeDayHoursCubit extends Cubit<HomeDayHoursState> {
 
   final GetWeatherForecastDaily _getWeatherDayHourly;
 
-  Future<void> getWeatherDay({required WeatherForecastParams params}) async {
+  Future<List<WeatherInfo>> getWeatherDayByLocation({
+    required WeatherForecastParams params,
+  }) async {
+    final List<WeatherInfo> mockData =
+        List.generate(24, (item) => const WeatherInfo());
+
     try {
       emit(
         state.copyWith(
@@ -34,7 +39,7 @@ class HomeDayHoursCubit extends Cubit<HomeDayHoursState> {
 
       final result = await _getWeatherDayHourly.call(params);
 
-      result.fold((l) {
+      return result.fold((l) {
         emit(
           state.copyWith(
             isLoading: false,
@@ -42,7 +47,8 @@ class HomeDayHoursCubit extends Cubit<HomeDayHoursState> {
           ),
         );
 
-        log('two_factor_auth_cubit@@@getWeatherDay Error: $l');
+        log('two_factor_auth_cubit@@@getWeatherDayByLocation Error: $l');
+        return mockData;
       }, (r) {
         late List<WeatherInfo> weatherHoursData = [];
 
@@ -90,15 +96,17 @@ class HomeDayHoursCubit extends Cubit<HomeDayHoursState> {
         );
 
         log('@@@@@result: $r');
+        return weatherHoursData;
       });
     } on ServerException catch (e) {
-      log('two_factor_auth_cubit@@@getWeatherDay Error: $e');
+      log('two_factor_auth_cubit@@@getWeatherDayByLocation Error: $e');
 
       emit(
         state.copyWith(
           isLoading: false,
         ),
       );
+      return mockData;
     }
   }
 

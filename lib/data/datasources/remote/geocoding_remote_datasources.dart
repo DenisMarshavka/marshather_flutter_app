@@ -2,33 +2,32 @@ import 'package:marshather_app/core/core.dart';
 import 'package:marshather_app/data/datasources/remote/remote.dart';
 import 'package:marshather_app/domain/usecases/usecases.dart';
 
-abstract class WeatherRemoteDatasource {
-  Future<WeatherForecastDaysHourlyResponse> getForecastDaysHourly(
-      WeatherForecastParams params);
+abstract class GeocodingRemoteDatasource {
+  Future<List<GeocodingSearchLocationResponse>> getLocationsByCityName(
+      GeocodingLocationByCityNameParams params);
 }
 
-class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
-  WeatherRemoteDatasourceImpl(
+class GeocodingRemoteDatasourceImpl implements GeocodingRemoteDatasource {
+  GeocodingRemoteDatasourceImpl(
     this._client,
     this._noTokenClient,
   );
 
-  final DioClient _client;
-  final NoTokenDioClient _noTokenClient;
+  final DioGeocodingClient _client;
+  final NoTokenDioGeocodingClient _noTokenClient;
 
   @override
-  Future<WeatherForecastDaysHourlyResponse> getForecastDaysHourly(
-    WeatherForecastParams registerParams,
+  Future<List<GeocodingSearchLocationResponse>> getLocationsByCityName(
+    GeocodingLocationByCityNameParams registerParams,
   ) async {
     try {
       final response = await _noTokenClient.getRequest(
-        ListApi.weatherForecastHourly(registerParams),
+        ListApi.geocodingGetLocationByCityName(registerParams),
       );
       final dynamic data = response.data;
-      final json = Map<String, dynamic>.from(data as Map);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = WeatherForecastDaysHourlyResponse.fromJson(json);
+        final result = placeLocationFromJson(data);
 
         return result;
       } else {

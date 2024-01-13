@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:marshather_app/data/datasources/remote/geocoding_remote_datasources.dart';
+import 'package:marshather_app/presentation/screens/screens.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:marshather_app/data/data.dart';
 import 'package:marshather_app/domain/domain.dart';
-
-import '../presentation/screens/home/home.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -22,7 +22,11 @@ Future<void> serviceLocator({bool isUnitTest = false}) async {
     SharedPreferences.setMockInitialValues({});
     await SharedPreferences.getInstance().then(initPrefManager);
 
-    sl.registerSingleton<DioClient>(DioClient(isUnitTest: true));
+    sl
+      ..registerSingleton<DioClient>(DioClient(isUnitTest: true))
+      ..registerSingleton<DioGeocodingClient>(
+        DioGeocodingClient(isUnitTest: true),
+      );
 
     dataSources();
     repositories();
@@ -32,7 +36,11 @@ Future<void> serviceLocator({bool isUnitTest = false}) async {
   } else {
     sl
       ..registerSingleton<DioClient>(DioClient())
-      ..registerSingleton<NoTokenDioClient>(NoTokenDioClient());
+      ..registerSingleton<DioGeocodingClient>(DioGeocodingClient())
+      ..registerSingleton<NoTokenDioClient>(NoTokenDioClient())
+      ..registerSingleton<NoTokenDioGeocodingClient>(
+        NoTokenDioGeocodingClient(),
+      );
 
     //..registerSingleton<NotificationsService>(NotificationsService())
     dataSources();
@@ -58,6 +66,12 @@ void dataSources() {
         sl(),
         sl(),
       ),
+    )
+    ..registerLazySingleton<GeocodingRemoteDatasource>(
+      () => GeocodingRemoteDatasourceImpl(
+        sl(),
+        sl(),
+      ),
     );
 }
 
@@ -65,7 +79,9 @@ void dataSources() {
 void repositories() {
   sl
     ..registerLazySingleton<WeatherRepository>(
-        () => WeatherRepositoryImpl(sl()));
+        () => WeatherRepositoryImpl(sl()))
+    ..registerLazySingleton<GeocodingRepository>(
+        () => GeocodingRepositoryImpl(sl()));
 }
 
 /// Register services
@@ -78,17 +94,22 @@ void repositories() {
 
 void useCase() {
   /// Auth
-  sl..registerLazySingleton(() => GetWeatherForecastDaily(sl()));
+  sl
+    ..registerLazySingleton(() => GetWeatherForecastDaily(sl()))
+    ..registerLazySingleton(() => GetGeocodingPlaceLocations(sl()));
 }
 
 void cubit() {
   sl
-    /*..registerLazySingleton(
-      UserSettingsCubit.new,
-    )*/
     ..registerLazySingleton(
       () => HomeDayHoursCubit(
         getWeatherDayHourly: sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => SearchGeocodingLocationsCubit(
+        getGeocodingLocationsByCityName: sl(),
+        homeDayHoursCubit: sl(),
       ),
     );
 }

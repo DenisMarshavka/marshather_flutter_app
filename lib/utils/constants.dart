@@ -10,5 +10,5 @@ class Constants {
   static const appId = '1369dd6b5ae78fc9952261ab9aa236b4';
   static const baseScheme = 'https://';
   static const weatherBaseUrlDomain = 'api.open-meteo.com';
-  static const geocodingBaseUrlDomain = 'geocoding-api.open-meteo.com';
+  static const geocodingBaseUrlDomain = 'geocode.maps.co';
 }

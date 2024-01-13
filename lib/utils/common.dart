@@ -35,3 +35,35 @@ String getWeatherNameByCode({
 
   return !isNight(data.time) ? weatherName.day : weatherName.night;
 }
+
+WeatherInfo getCurrentWeatherInfoByHour({
+  required List<WeatherInfo> weatherDayHourlyData,
+}) {
+  final DateTime currentTime = DateTime.now();
+  final int currentTimeHour = currentTime.hour;
+
+  final List<WeatherInfo> currentItemTime = weatherDayHourlyData
+      .where((element) =>
+          element.time != null &&
+          DateTime.tryParse(element.time!)?.hour != null &&
+          DateTime.tryParse(element.time!)!.hour == currentTimeHour)
+      .toList();
+
+  return currentItemTime.isNotEmpty
+      ? currentItemTime.first
+      : const WeatherInfo();
+}
+
+bool isCurrentWeatherInfoByHour({
+  required WeatherInfo weatherDayHourlyData,
+}) {
+  final DateTime currentTime = DateTime.now();
+  final int currentTimeHour = currentTime.hour;
+
+  if (weatherDayHourlyData.time == null) return false;
+
+  final DateTime? dataTime = DateTime.tryParse(weatherDayHourlyData.time!);
+
+  if (dataTime == null) return false;
+  return currentTimeHour == dataTime.hour;
+}

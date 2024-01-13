@@ -48,8 +48,8 @@ class _MoreDaysScreenState extends State<MoreDaysScreen> {
         children: [
           Positioned(
             top: Constants.isIos
-                ? (MediaQuery.of(context).size.height / 100) * 8.8
-                : (MediaQuery.of(context).size.height / 100) * 4.3,
+                ? (MediaQuery.of(context).size.height / 100) * 8.2
+                : (MediaQuery.of(context).size.height / 100) * 3.7,
             left: (MediaQuery.of(context).size.width / 100) * 1.82,
             child: Opacity(
               opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).

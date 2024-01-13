@@ -33,15 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    sl<HomeDayHoursCubit>().getWeatherDay(
+    sl<HomeDayHoursCubit>().getWeatherDayByLocation(
       params: WeatherForecastParams(latitude: _latitude, longitude: _longitude),
     );
 
     if (Constants.isIos) {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
-          statusBarBrightness:
-              Brightness.dark, //or set color with: Color(0xFF0000FF)
+          statusBarBrightness: Brightness.dark,
         ),
       );
     }
@@ -58,21 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         listener: (context, state) {
           for (var i = 0; i < state.weatherHours.length; i++) {
-            final DateTime currentTime = DateTime.now();
-            final DateTime currentItemTime = state.weatherHours[i].time != null
-                ? DateTime.parse(state.weatherHours[i].time!)
-                : currentTime;
-            final int currentItemTimeHourData = currentItemTime.hour;
-            final int currentItemTimeDateDay = currentItemTime.day;
-            final int currentItemTimeDateMonth = currentItemTime.month;
-
-            final int currentTimeHour = currentTime.hour;
-            final int currentDateDay = currentTime.day;
-            final int currentDateMonth = currentTime.month;
-
-            if (currentItemTimeHourData == currentTimeHour &&
-                currentItemTimeDateDay == currentDateDay &&
-                currentItemTimeDateMonth == currentDateMonth) {
+            if (isCurrentWeatherInfoByHour(
+                weatherDayHourlyData: state.weatherHours[i])) {
               setState(() {
                 _bottomHoursActiveItemInex = i;
               });
@@ -174,13 +160,13 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Positioned(
           top: !Constants.isIos
-              ? (MediaQuery.of(context).size.height / 100) * 15
-              : (MediaQuery.of(context).size.height / 100) * 15.5,
+              ? (MediaQuery.of(context).size.height / 100) * 8
+              : (MediaQuery.of(context).size.height / 100) * 9,
           left: (MediaQuery.of(context).size.width / 100) * 1.82,
           child: Opacity(
             opacity: 0.3, // Set the opacity value here (between 0.0 and 1.0).
             child: Container(
-              height: (MediaQuery.of(context).size.height / 100) * 60,
+              height: (MediaQuery.of(context).size.height / 100) * 70,
               width: MediaQuery.of(context).size.width / 1.1,
               decoration: BoxDecoration(
                 color: Palette.accentColorDark,
@@ -329,7 +315,13 @@ class _HomeScreenState extends State<HomeScreen> {
           right: 20.w,
           child: TouchableCircularIconButtonWidget(
             icon: Icons.search_outlined,
-            onPressed: () => AppRoute.router.goNamed(Routes.searchPage.name),
+            onPressed: () {
+              setState(() {
+                _bottomHoursActiveItemInex = null;
+              });
+
+              AppRoute.router.goNamed(Routes.searchPage.name);
+            },
           ),
         )
       ],

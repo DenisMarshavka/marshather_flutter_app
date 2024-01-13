@@ -36,6 +36,9 @@ class MainApp extends StatelessWidget {
             BlocProvider(
               create: (_) => sl<HomeDayHoursCubit>(),
             ),
+            BlocProvider(
+              create: (_) => sl<SearchGeocodingLocationsCubit>(),
+            ),
           ],
           child: MaterialApp.router(
             title: Constants.appName,
